@@ -1,0 +1,22 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+Redirect 301 /webdev-en.html /en/webdev/
+Redirect 301 /devops.html /ru/devops/
+Redirect 301 /devops-en.html /en/devops/
+Redirect 301 /translation.html /ru/translation/
+Redirect 301 /translation-en.html /en/translation/
+
+RewriteRule ^(ru|en)/(webdev|devops|translation)$ /$1/$2/ [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/$
+RewriteCond %{HTTP:Accept-Language} ^ru [NC]
+RewriteRule ^$ /ru/webdev/ [R=302,L]
+
+RewriteCond %{REQUEST_URI} ^/$
+RewriteRule ^$ /en/webdev/ [R=302,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+Header merge Vary Accept-Language
+</IfModule>

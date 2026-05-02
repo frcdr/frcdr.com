@@ -1,0 +1,27 @@
+---
+title: 'Translator'
+long_title: 'Translator'
+description: "Translator CV. Russian, English, Spanish, German. Technical translation, localization, glossaries, WordPress, documentation, and strong IT domain knowledge. Open to offers."
+layout: 'layouts/base.html'
+permalink: /en/translation/
+tags: public
+lastmod: "2026-05-02"
+---
+{% set lang = lang or page.fileSlug or site.languagesorder[0] %}
+{% import '_globals.html' as glob %}
+{% set translate = glob.translations[lang] %}
+<main class="main-top">
+	{% for chapter in topblocks %}
+		<div class="chapter">
+			{% renderFile contentFile("./translation/" ~ chapter ~ "/" ~ lang), {lang: lang, translate: translate, pagekey: pagekey} %}
+		</div>
+	{% endfor %}
+</main>
+
+<main class="main-bottom">
+	{% for chapter in bottomblocks %}
+		<div class="chapter">
+			{% renderFile contentFile("./translation/" ~ chapter ~ "/" ~ lang), {lang: lang, translate: translate, pagekey: pagekey} %}
+		</div>
+	{% endfor %}
+</main>

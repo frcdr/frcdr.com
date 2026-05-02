@@ -1,0 +1,35 @@
+---
+permalink: /sitemap.xml
+eleventyExcludeFromCollections: true
+eleventyImport:
+  collections: ["public"]
+---
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+  xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+{%- for item in collections.public %}
+  {%- set parts = item.page.url.split('/') %}
+  {%- set pagekey = item.data.pagekey or parts[2] %}
+  {%- set section = site.sections[pagekey] %}
+  <url>
+    <loc>{{ site.url }}{{ item.page.url }}</loc>
+    {%- if item.data.lastmod %}
+    <lastmod>{{ item.data.lastmod }}</lastmod>
+    {%- endif %}
+
+    {%- if section %}
+      {%- for languagecode in site.languagesorder %}
+    <xhtml:link
+      rel="alternate"
+      hreflang="{{ languagecode }}"
+      href="{{ site.url }}{{ section.urls[languagecode] }}" />
+      {%- endfor %}
+    <xhtml:link
+      rel="alternate"
+      hreflang="x-default"
+      href="{{ site.url }}/" />
+    {%- endif %}
+  </url>
+{%- endfor %}
+</urlset>

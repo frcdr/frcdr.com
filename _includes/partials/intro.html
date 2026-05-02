@@ -1,0 +1,31 @@
+{% set currentsection = site.sections[pagekey] %}
+<div class="intro">
+	{% renderFile contentFile("./intro/" ~ lang) %}
+	<ul>
+	    {% for key in site.sectionsorder %}
+			{% set section = site.sections[key] %}
+			<li>
+				<a href="{% if key == pagekey %}#cv{% elif site.sections[key] == '/' %}/{% else %}{{ section.urls[lang] | url }}{% endif %}">{{ section.label[lang] }}</a>,
+				{{ section.teaser[lang] }}.
+			</li>
+		{% endfor %}
+	</ul>
+	<p class="contact-short">
+		{{translate.contactme}}
+		{% for item in glob.socials %}
+			{% if item.class == "email" %}
+				<a href="mailto:{{ glob.email }}?subject={{ translate.emailsubject | urlencode }}&body={{ translate.emailbody | urlencode }}">{{translate.email}}</a>, 
+			{% elif loop.last %}
+				<a href="{{item.link}}" target="_blank" rel="noopener noreferrer">{{item.prettyname}}</a>.
+			{% else %}
+				<a href="{{item.link}}" target="_blank" rel="noopener noreferrer">{{item.prettyname}}</a>, 
+			{% endif %} 
+		{% endfor %}
+	</p>
+	<p>
+		{% set otherlanguages = site.languagesorder | withoutvalue(lang) %}
+		{% for languagecode in otherlanguages %}
+			<a href="{{ currentsection.urls[languagecode] | url }}">{{ site.languages[languagecode].switchlabel }}</a>{% if not loop.last %}, {% endif %}
+		{% endfor %}
+	</p>
+</div>

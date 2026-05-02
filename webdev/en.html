@@ -1,0 +1,27 @@
+---
+title: 'Web Developer'
+long_title: 'Full Stack Web Developer'
+description: "Full-stack web developer CV. WordPress, WooCommerce, CMS maintenance, performance, accessibility, Node.js automation, hosting-aware development, and localization. Open to opportunities, Almaty."
+layout: 'layouts/base.html'
+permalink: /en/webdev/
+tags: public
+lastmod: "2026-05-02"
+---
+{% set lang = lang or page.fileSlug or site.languagesorder[0] %}
+{% import '_globals.html' as glob %}
+{% set translate = glob.translations[lang] %}
+<main class="main-top">
+	{% for chapter in topblocks %}
+		<div class="chapter">
+			{% renderFile contentFile("./webdev/" ~ chapter ~ "/" ~ lang), {lang: lang, translate: translate, pagekey: pagekey} %}
+		</div>
+	{% endfor %}
+</main>
+
+<main class="main-bottom">
+	{% for chapter in bottomblocks %}
+		<div class="chapter">
+			{% renderFile contentFile("./webdev/" ~ chapter ~ "/" ~ lang), {lang: lang, translate: translate, pagekey: pagekey} %}
+		</div>
+	{% endfor %}
+</main>

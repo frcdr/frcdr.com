@@ -1,0 +1,22 @@
+<aside>
+	<div class="aside--section">
+		<img src="{{asset('/assets/myphoto.jpg')}}" alt="">
+	</div>
+	<div class="aside--section">
+		<a class="contact" href="mailto:{{ glob.email }}?subject={{ translate.emailsubject | urlencode }}&body={{ translate.emailbody | urlencode }}">
+			<div class="qr qremail"></div>
+			<div class="unsocial unsocial--notemail">{{ glob.email }}</div>
+		</a>
+	</div>
+	<div class="aside--section">
+		{% for item in glob.socials %}
+			{% if item.class != "email" %}
+				<p><a href="{{ item.link }}" class="unsocial unsocial--not{{ item.class }}" target="_blank" rel="noopener noreferrer">{{ item.handle }}</a></p>
+			{% endif %}
+		{% endfor %}
+	</div>
+	<div class="aside--section">
+		<p>{{glob.birthDate | ageText(lang)}}</p>
+		<p>{{translate.city}}</p>
+	</div>
+</aside>

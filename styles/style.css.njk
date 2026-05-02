@@ -1,0 +1,536 @@
+---
+permalink: /assets/style.css
+eleventyExcludeFromCollections: true
+---
+/* CSS Reset, mainly based on https://www.joshwcomeau.com/css/custom-css-reset/ */
+/* Use a more-intuitive box-sizing model. Addition from https://news.ycombinator.com/item?id=29339378 */
+html {
+	box-sizing: border-box;
+}
+*, *::before, *::after {
+	box-sizing: inherit;
+}
+/* 
+ * From https://github.com/sindresorhus/modern-normalize as of ba66c6fe
+ * 1. Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3)
+ * 2. Prevent adjustments of font size after orientation changes in iOS.
+ * 3. Use a more readable tab size (opinionated).
+ */
+/* Also: From https://github.com/rsms/inter */
+html {
+	font-family: 'Inter', system-ui, sans-serif;
+	-webkit-text-size-adjust: 100%;
+	tab-size: 4;
+}
+@supports (font-variation-settings: normal) {
+	html {
+		font-family: 'InterVariable', system-ui, sans-serif;
+		font-optical-sizing: auto;
+	}
+}
+/* Improve consistency of default fonts in all browsers. (https://github.com/sindresorhus/modern-normalize/issues/3) */
+code, kbd, samp, pre {
+	font-family:
+		ui-monospace,
+		SFMono-Regular,
+		Consolas,
+		'Liberation Mono',
+		Menlo,
+		monospace;
+}
+/* Add the correct font weight in Chrome and Safari. */
+b, strong {
+	font-weight: bolder;
+}
+/* Add the correct font size in all browsers. */
+small {
+	font-size: 80%;
+}
+/* Prevent 'sub' and 'sup' elements from affecting the line height in all browsers. */
+sub, sup {
+	font-size: 75%;
+	line-height: 0;
+	position: relative;
+	vertical-align: baseline;
+}
+sub {
+	bottom: -0.25em;
+}
+sup {
+	top: -0.5em;
+}
+/* Correct table border color inheritance in Chrome and Safari. (https://issues.chromium.org/issues/40615503, https://bugs.webkit.org/show_bug.cgi?id=195016) */
+table {
+	border-color: currentcolor;
+}
+/* Remove default margin */
+* {
+	margin: 0;
+}
+/* Enable keyword animations */
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		interpolate-size: allow-keywords;
+	}
+}
+body {
+	/* Improve text rendering */
+	-webkit-font-smoothing: antialiased;
+}
+p, li {
+	/* Add accessible line-height (+ experiment from Mr. Josh themselves) */
+	line-height: calc(1em + 0.5rem);
+}
+/* Improve media defaults */
+/* On problems: see https://www.joshwcomeau.com/css/custom-css-reset/#six-improve-media-defaults-7 */
+img, picture, video, canvas, svg {
+	display: block;
+	max-width: 100%;
+}
+/* Inherit fonts for form controls */
+input, button, textarea, select {
+	font: inherit;
+}
+/* Remove the padding so developers are not caught out when they zero out 'fieldset' elements in all browsers. */
+legend {
+	padding: 0;
+}
+/* Add the correct vertical alignment in Chrome and Firefox. */
+progress {
+	vertical-align: baseline;
+}
+/* Correct the inability to style clickable types in iOS and Safari. */
+button, [type='button'], [type='reset'], [type='submit'] {
+	-webkit-appearance: button;
+}
+/* Correct the cursor style of increment and decrement buttons in Safari. */
+::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+	height: auto;
+}
+/* Correct the odd appearance in Chrome and Safari and correct the outline style in Safari. */
+[type='search'] {
+	-webkit-appearance: textfield;
+	outline-offset: -2px;
+}
+/* Remove the inner padding in Chrome and Safari on macOS. */
+::-webkit-search-decoration {
+	-webkit-appearance: none;
+}
+/* Correct the inability to style clickable types in iOS and Safari and change font properties to 'inherit' in Safari. */
+::-webkit-file-upload-button {
+	-webkit-appearance: button;
+	font: inherit;
+}
+/* Add the correct display in Chrome and Safari. */
+summary {
+	display: list-item;
+}
+/*
+ * Avoid text overflows and improve line wrapping
+ * The heading/body divide for the "wrap"/"pretty" options doesn't actually make sense once you try to think of that logic for more than a second. Firefox, however, doesn't even support "pretty", so we default to "wrap"
+ */
+h1, h2, h3, h4, h5, h6, p {
+	overflow-wrap: break-word;
+	text-wrap: wrap;
+	text-wrap: pretty;
+}
+
+/* Now go the main styles. */
+/* Styling external links: https://stackoverflow.com/a/5379820 */
+/* a[href]:not(:where( */
+	/* exclude hash only links */
+	/* [href^="#"], */
+	/* exclude javascript only links */
+	/* [href^="javascript:" i], */
+	/* exclude relative but not double slash only links */
+	/* [href^="/"]:not([href^="//"])
+)):after {
+	content: '↗️';
+} */
+html {
+	display: flex;
+	justify-content: center;
+	font-weight: 375;
+}
+body {
+	max-width: 210mm;
+	padding: 1rem 3.5rem;
+}
+@media (max-width: 768px) {
+	body {
+		padding: 2rem;
+	}
+}
+@media (max-width: 576px) {
+	body {
+		padding: 1rem;
+		font-size: smaller;
+	}
+}
+@media print {
+	body {
+		padding: 0px 2rem;
+	}
+}
+h1 {
+	margin: auto;
+}
+h2, h3, h4, h5, h6 {
+	margin-top: 0.25rem;
+}
+h1, h2, h3, h4, h5, h6,
+h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+	color: #8c0019;
+}
+@media print {
+	.intro, .outro {
+		display: none;
+	}
+}
+.header--top {
+	display: flex;
+	border-bottom: 4px solid #ce002c;
+	padding-bottom: 0.5rem;
+	justify-content: space-between;
+}
+/* From Uiverse.io by vinodjangid07 */ 
+.print-btn {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: white;
+	border: 1px solid rgb(213, 213, 213);
+	border-radius: 10px;
+	font-size: 16px;
+	cursor: pointer;
+	overflow: hidden;
+	font-weight: 500;
+	box-shadow: 0px 10px 10px rgba(0, 0, 0, 0.065);
+	transition: all 0.3s;
+	flex-direction: column;
+	padding: 0.5rem;
+	color: #000000;
+}
+@media (max-width: 576px) {
+	.print-btn {
+		font-size: small;
+	}
+}
+.printer-wrapper {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	width: 20px;
+	height: 35px;
+}
+.printer-container {
+	height: 50%;
+	width: 100%;
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+}
+.printer-container svg {
+	width: 100%;
+	height: auto;
+	transform: translateY(4px);
+}
+.printer-page-wrapper {
+	width: 100%;
+	height: 50%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+.printer-page {
+	width: 70%;
+	height: 10px;
+	border: 1px solid black;
+	background-color: white;
+	transform: translateY(0px);
+	transition: all 0.3s;
+	transform-origin: top;
+}
+.print-btn:hover .printer-page {
+	height: 16px;
+	background-color: rgb(239, 239, 239);
+}
+.print-btn:hover {
+	background-color: rgb(239, 239, 239);
+}
+@media print {
+	.print-btn {
+		display: none;
+	}
+}
+.header--subheader {
+	font-weight: 600;
+	padding-top: 0.5rem;
+}
+.header--subheader p:last-child {
+	text-align: end;
+	text-wrap: balance;
+}
+.header--subheader, .header--subheader a {
+	color: #ce002c;
+}
+.header--subheader, section {
+	display: grid;
+	grid-template-columns: 10rem 1fr;
+}
+@media (max-width: 768px) {
+	section {
+		grid-template-columns: 1fr;
+	}
+	aside {
+		display: none;
+	}
+}
+aside {
+	margin-right: 1rem;
+	height: max-content;
+	border-bottom: 4px solid #ce002c;
+}
+.aside--section {
+	padding-bottom: 1.25rem;
+	font-size: 14px;
+}
+@media print {
+	.aside--section {
+		padding-bottom: 1.75rem;
+	}
+}
+.aside--section, .aside--section a {
+	color: #606060;
+}
+p, ul {
+	margin-bottom: 0.5rem;
+}
+.aside--section p {
+	margin-bottom: 0;
+}
+h2 {
+	top: 0;
+	background: white;
+}
+.attribution {
+	display: none;
+}
+@media print {
+	.attribution {
+		display: initial;
+	}
+}
+.contact {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+}
+.qr {
+	display: block;
+	width: 100%;
+	aspect-ratio: 1/1;
+	background-size: contain;
+}
+.qremail {
+	background: url("{{ asset('/assets/qremail.svg') }}");
+	print-color-adjust: exact;
+}
+.unsocial {
+	print-color-adjust: exact;
+	display: inline-flex;
+	align-items: center;
+	gap: 0.25em;
+}
+.unsocial::before {
+	content: "";
+	display: inline-block;
+	width: 1.25em;
+	height: 1.25em;
+	margin-top: 0.1em;
+}
+.unsocial--notemail::before {
+	background: url("{{ asset('/assets/email.svg') }}") no-repeat center/contain;
+}
+.unsocial--notlinkedin::before {
+	background: url("{{ asset('/assets/linkedin.svg') }}") no-repeat center/contain;
+}
+.unsocial--nottelegram::before {
+	background: url("{{ asset('/assets/telegram.svg') }}") no-repeat center/contain;
+}
+.unsocial--notinstagram::before {
+	background: url("{{ asset('/assets/instagram.svg') }}") no-repeat center/contain;
+}
+.unsocial--notmessenger::before {
+	background: url("{{ asset('/assets/messenger.svg') }}") no-repeat center/contain;
+}
+main {
+	text-align: justify;
+}
+.main-top {
+	grid-column: 2;
+	grid-row: 1;
+}
+.main-bottom {
+	grid-column: 1 / -1;
+	grid-row: 2;
+}
+@media (max-width: 768px) {
+	.main-top, .main-bottom {
+		grid-column: initial;
+		grid-row: initial;
+	}
+}
+@media (max-width: 576px) {
+	main {
+		text-align: initial;
+	}
+}
+.contact-short {
+	display: none;
+}
+@media (max-width: 768px) {
+	.contact-short {
+		display: initial;
+	}
+}
+@media print {
+  /* keep Firefox happy */
+  html { display: block !important; }
+
+  /* turn off grid for print & show two-column top, then full-width */
+  section { display: block !important; }
+
+  aside {
+    display: block !important;
+    float: left;
+    width: 10rem;
+    margin-right: 1rem;
+    break-inside: avoid;          /* nicer pagination */
+    page-break-inside: avoid;     /* legacy alias */
+  }
+
+  /* base main */
+  main { 
+    display: block !important;
+    margin-left: 0 !important;    /* reset generic left column reservation */
+  }
+
+  /* top part sits beside the aside */
+  .main-top {
+    margin-left: calc(10rem + 1rem) !important;  /* reserve the left column */
+  }
+
+  /* bottom part drops below the aside and spans full width */
+  .main-bottom {
+    clear: both;                  /* wait for the float to end */
+    margin-left: 0 !important;    /* go full width */
+  }
+
+  /* clear the float after the two columns */
+  section::after { 
+    content: "";
+    display: block;
+    clear: both;
+  }
+}
+a {
+	color: #8c0019;
+}
+@media print {
+	a {
+		color: black;
+	}
+}
+ul {
+	padding-left: 1rem;
+}
+li::marker {
+	color: #8c0019;
+}
+
+/* From: https://codepen.io/eludapens/pen/JjMQjmQ */
+.carousel {
+  overflow: hidden;
+  position: relative;
+  scroll-behavior: smooth;
+  background: white;
+}
+@media print {
+	.carousel {
+		display: none;
+	}
+}
+.slides {
+  display: flex;
+  gap: 20px;
+  padding: 1rem;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  --tw-scroll-snap-strictness: mandatory;
+  scroll-snap-type: x var(--tw-scroll-snap-strictness);
+}
+.navigation {
+  gap: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.slide {
+  position: relative;
+  flex: 0 0 100%;
+  aspect-ratio: 16 / 9;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  background: #000;
+}
+.slide-main { 
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.slide-main > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  border: 0;
+}
+.slide-nav {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 25%;
+  opacity: 0;
+  transition: opacity 200ms ease;
+  z-index: 1;
+  pointer-events: auto;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  cursor: pointer;
+}
+.slide-nav:hover,
+.slide-nav:focus-visible {
+  opacity: 1;
+}
+.nav-left {
+  left: 0;
+  background: linear-gradient(to left, rgba(0,0,0,0), rgba(0,0,0,.5));
+}
+.nav-right {
+  right: 0;
+  background: linear-gradient(to right, rgba(0,0,0,0), rgba(0,0,0,.5));
+}
+p .footer {
+	display: flex;
+	justify-content: center;
+}
+.footer {
+	font-size: smaller;
+}

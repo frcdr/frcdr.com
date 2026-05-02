@@ -1,0 +1,3 @@
+Technology is a field I have been interested in, studied, and worked in through&shy;out my life, with a focus on web develop&shy;ment, loca&shy;li&shy;zation, user expe&shy;rience, security, and systems design. As for my linguistic education, it helps me see more ways in which tech&shy;nology can be applied around the world, allowing me to take into account many more per&shy;spectives in my decisions.
+
+<span class="footer">Made with Eleventy&nbsp;[(code)](https://github.com/frcdr/frcdr.com)</span>

@@ -1,0 +1,86 @@
+<!-- Source - https://stackoverflow.com/a/47890306 -->
+<!-- Posted by Aliaksei Maniuk -->
+<!-- Retrieved 2026-04-15, License - CC BY-SA 3.0 -->
+
+{% set birthDate = "2001-11-20" %}
+{% set separator = " — " %}
+{% set email = "me@frcdr.com" %}
+
+{% set socials = [
+	{
+		class: "email",
+		handle: email,
+		prettyname: "email"
+	},
+	{
+		class: "linkedin",
+		link: "https://linkedin.com/in/mpfrcdr/",
+		handle: "@mpfrcdr",
+		prettyname: "LinkedIn"
+	},
+	{
+		class: "telegram",
+		link: "https://t.me/isfrcdr",
+		handle: "@isfrcdr",
+		prettyname: "Telegram"
+	},
+	{
+		class: "instagram",
+		link: "https://instagram.com/firocodiro",
+		handle: "firocodiro",
+		prettyname: "Instagram"
+	},
+	{
+		class: "messenger",
+		link: "https://messenger.com/t/6156287300284",
+		handle: "Mikhail Pershin",
+		prettyname: "Messenger"
+	}
+] %}
+
+{% set translations = {
+	en: {
+		name: "Mikhail Pershin",
+		commontitle: "Mikhail Pershin's CV",
+		contactme: "Contact me via ",
+		email: "email",
+		emailsubject: "Job Offer",
+		emailbody: "Hello Mikhail Pershin,",
+		othercvs: "See also my resumes for ",
+		othercvsand: " and ",
+		attribution: " at ",
+		experience: "Work Experience",
+		education: "Education",
+		skills: "Skills",
+		tools: "Tools",
+		about: "About Me",
+		city: "Almaty",
+		print: "Print",
+		openslide: "Go to",
+		prevslide: "Previous screenshot",
+		nextslide: "Next screenshot",
+		slidenav: "Slide navigation"
+	},
+	ru: {
+		name: "Михаил Першин",
+		commontitle: "Резюме Михаила Першина",
+		contactme: "Связаться со мной: ",
+		email: "почта",
+		emailsubject: "Приглашение на работу",
+		emailbody: "Здравствуйте, Михаил Алексеевич!",
+		othercvs: "Смотрите также мои резюме на должности ",
+		othercvsand: " и ",
+		attribution: " на ",
+		experience: "Опыт работы",
+		education: "Образование",
+		skills: "Навыки",
+		tools: "Инструменты",
+		about: "О себе",
+		city: "Алматы",
+		print: "Распе&shy;чатать",
+		openslide: "Открыть",
+		prevslide: "Предыдущий скриншот",
+		nextslide: "Следующий скриншот",
+		slidenav: "Навигация по слайдам"
+	}
+} %}

@@ -1,0 +1,78 @@
+{% set slides = [
+	{
+		file: "helmets.png",
+		title: {
+			ru: "Глав&shy;ная",
+			en: "Home"
+		}
+	},
+	{
+		file: "helmets2.png",
+		title: {
+			ru: "Товар",
+			en: "Product"
+		}
+	},
+	{
+		file: "helmets3.png",
+		title: {
+			ru: "О&nbsp;ком&shy;пании",
+			en: "About"
+		}
+	},
+	{
+		file: "helmets4.png",
+		title: {
+			ru: "Elemen&shy;tor",
+			en: "Elementor"
+		}
+	},
+	{
+		file: "helmets5.png",
+		title: {
+			ru: "ACF+CPT",
+			en: "ACF+CPT"
+		}
+	}
+] %}
+
+<div class="carousel">
+	<div class="slides">
+		{% for slide in slides %}
+			{% set prevIndex = loop.length if loop.first else loop.index - 1 %}
+			{% set nextIndex = 1 if loop.last else loop.index + 1 %}
+			<div class="slide" id="slide-{{ loop.index }}">
+			<a class="slide-main"
+			   target="_blank"
+			   rel="noopener noreferrer"
+			   href="{{ asset('/assets/' ~ slide.file) }}"
+			   aria-label="{{ translate.openslide }} {{ slide.title[lang] | a11yText }}">
+			   <img src="{{ asset('/assets/' ~ slide.file) }}" alt="{{ slide.title[lang] | a11yText }}">
+			</a>
+			<a class="slide-nav nav-left" href="#slide-{{ prevIndex }}" aria-label="{{ translate.prevslide }}"></a>
+			<a class="slide-nav nav-right" href="#slide-{{ nextIndex }}" aria-label="{{ translate.nextslide }}"></a>
+			</div>
+		{% endfor %}
+	</div>
+
+	<nav class="navigation" aria-label="{{translate.slidenav}}">
+		{% for slide in slides %}
+			<a href="#slide-{{ loop.index }}">{{ slide.title[lang] | safe }}</a>
+		{% endfor %}
+	</nav>
+</div>
+
+<script>
+	document.addEventListener('click', (e) => {
+		const link = e.target.closest('.carousel a[href^="#"]');
+		if (!link) return;
+		const carousel = link.closest('.carousel');
+		const scroller  = carousel.querySelector('.slides');
+		const hash = link.getAttribute('href');
+		const target = scroller.querySelector(hash);
+		if (!target) return;
+		e.preventDefault();
+		target.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+		history.replaceState(null, '', hash);
+	});
+</script>

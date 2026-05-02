@@ -1,0 +1,1 @@
+**Hi!** As a passionate engineer in the beginning of my career, I am actively seeking opportunities in software development and adjacent fields. My areas of expertise include:

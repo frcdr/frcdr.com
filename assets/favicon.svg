@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 24" style="width:16px; height:24px;" width="16" height="24"><metadata><rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:dc="http://purl.org/dc/elements/1.1/"><rdf:Description><dc:creator>RealFaviconGenerator</dc:creator><dc:source>https://realfavicongenerator.net</dc:source></rdf:Description></rdf:RDF></metadata><svg viewBox="0 0 16 24">
+		<defs>
+			<path id="frcdr-logo__letter-f" d="M0 0 H16 L12 4 H4 V8 H12 L8 12 H4 V20 L0 24 Z"></path>
+		</defs>
+	</svg><g id="frcdr-logo_size_s" viewBox="0 0 16 24">
+		<use href="#frcdr-logo__letter-f"></use>
+	</g><style>@media (prefers-color-scheme: light) { :root { filter: none; } }
+@media (prefers-color-scheme: dark) { :root { filter: invert(100%); } }
+</style></svg>

@@ -1,0 +1,32 @@
+{% set lang = lang or page.fileSlug or site.languagesorder[0] %}
+{% import '_globals.html' as glob %}
+{% set translate = glob.translations[lang] %}
+<!DOCTYPE html>
+<html lang="{{ lang }}">
+	<head>
+		<title>{{title}}{{glob.separator}}{{translate.commontitle}}</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="{{asset('/assets/style.css')}}">
+		<link rel="stylesheet" href="{{asset('/assets/inter.css')}}">
+		<meta name="description" content="{{description}}">
+		<!-- Thanks to https://realfavicongenerator.net -->
+		<link rel="icon" type="image/png" href="/assets/favicon-96x96.png?v=20260502" sizes="96x96" />
+		<link rel="icon" type="image/svg+xml" href="/assets/favicon.svg?v=20260502" />
+		<link rel="shortcut icon" href="/assets/favicon.ico?v=20260502" />
+		<link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png?v=20260502" />
+		<meta name="apple-mobile-web-app-title" content="Mikhail Pershin" />
+		<link rel="manifest" href="/assets/site.webmanifest?v=20260502" />
+	</head>
+	<body>
+		{% include "partials/intro.html" %}
+		{% include "partials/header.html" %}
+		<section>
+			{% include "partials/aside.html" %}
+			{% block content %}{{content|safe}}{% endblock %}
+		</section>
+		<div class="outro">
+			{% renderFile contentFile("./outro/" ~ lang), { lang: lang, translate: translate, pagekey: pagekey } %}
+		</div>
+	</body>
+</html>

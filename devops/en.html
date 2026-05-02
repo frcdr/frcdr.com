@@ -1,0 +1,27 @@
+---
+title: 'DevOps Engineer'
+long_title: 'DevOps Engineer'
+description: "DevOps-oriented system administrator CV. Cloud infrastructure, Linux, VMware, Proxmox, hosting, monitoring, backups, storage, and internal tooling. Based in Almaty; open to opportunities."
+layout: 'layouts/base.html'
+permalink: /en/devops/
+tags: public
+lastmod: "2026-05-02"
+---
+{% set lang = lang or page.fileSlug or site.languagesorder[0] %}
+{% import '_globals.html' as glob %}
+{% set translate = glob.translations[lang] %}
+<main class="main-top">
+	{% for chapter in topblocks %}
+		<div class="chapter">
+			{% renderFile contentFile("./devops/" ~ chapter ~ "/" ~ lang), {lang: lang, translate: translate, pagekey: pagekey} %}
+		</div>
+	{% endfor %}
+</main>
+
+<main class="main-bottom">
+	{% for chapter in bottomblocks %}
+		<div class="chapter">
+			{% renderFile contentFile("./devops/" ~ chapter ~ "/" ~ lang), {lang: lang, translate: translate, pagekey: pagekey} %}
+		</div>
+	{% endfor %}
+</main>
