@@ -11,10 +11,10 @@ RewriteRule ^(ru|en)/(webdev|devops|translation)$ /$1/$2/ [R=301,L]
 
 RewriteCond %{REQUEST_URI} ^/$
 RewriteCond %{HTTP:Accept-Language} ^ru [NC]
-RewriteRule ^$ /ru/webdev/ [R=302,L]
+RewriteRule ^$ /ru/devops/ [R=302,L]
 
 RewriteCond %{REQUEST_URI} ^/$
-RewriteRule ^$ /en/webdev/ [R=302,L]
+RewriteRule ^$ /en/devops/ [R=302,L]
 </IfModule>
 
 <IfModule mod_headers.c>
