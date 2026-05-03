@@ -48,7 +48,7 @@ jobs:
           option batch abort
           option confirm off
           open ftps://$env:FTP_SERVER/ -explicit -username="$env:FTP_USERNAME" -password="$env:FTP_PASSWORD" -certificate="$env:FTP_CERTIFICATE" -passive=on
-          synchronize remote -delete "$env:GITHUB_WORKSPACE\_site" "/"
+          synchronize remote -delete -filemask="| /.cagefs/; /.cl.selector/" "$env:GITHUB_WORKSPACE\_site" "/"
           exit
           "@
 
