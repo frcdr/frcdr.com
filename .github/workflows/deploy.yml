@@ -10,7 +10,7 @@ permissions:
 
 jobs:
   deploy:
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
 
     steps:
       - name: Check out repository
@@ -27,35 +27,36 @@ jobs:
       - name: Build site
         run: npm run build
 
-      - name: Install lftp
-        run: sudo apt-get update && sudo apt-get install -y lftp
+      - name: Install WinSCP
+        shell: pwsh
+        run: choco install winscp -y --no-progress
 
-      - name: Upload site by explicit FTPS
+      - name: Upload site with WinSCP
+        shell: pwsh
         env:
           FTP_SERVER: ${{ secrets.FTP_SERVER }}
           FTP_USERNAME: ${{ secrets.FTP_USERNAME }}
           FTP_PASSWORD: ${{ secrets.FTP_PASSWORD }}
+          FTP_CERTIFICATE: ${{ secrets.FTP_CERTIFICATE }}
         run: |
-          for attempt in 1 2 3 4 5; do
-            echo "FTPS upload attempt $attempt..."
+          $winscp = "${env:ProgramFiles(x86)}\WinSCP\WinSCP.com"
+          if (!(Test-Path $winscp)) {
+            $winscp = "${env:ProgramFiles}\WinSCP\WinSCP.com"
+          }
 
-            lftp <<EOF && exit 0
-          set ftp:use-feat false
-          set ftp:ssl-allow true
-          set ftp:ssl-force true
-          set ftp:ssl-auth TLS
-          set ftp:ssl-protect-data true
-          set ssl:verify-certificate true
-          set ssl:check-hostname false
-          set net:timeout 30
-          open -u "$FTP_USERNAME","$FTP_PASSWORD" "ftp://$FTP_SERVER:21"
-          mirror --reverse --delete --verbose ./_site/ ./
-          bye
-          EOF
+          $script = @"
+          option batch abort
+          option confirm off
+          open ftps://$env:FTP_SERVER/ -explicit -username="$env:FTP_USERNAME" -password="$env:FTP_PASSWORD" -certificate="$env:FTP_CERTIFICATE" -passive=on
+          synchronize remote -delete "$env:GITHUB_WORKSPACE\_site" "/"
+          exit
+          "@
 
-            echo "Attempt $attempt failed."
-            sleep 20
-          done
+          $script | Set-Content winscp-script.txt -Encoding ASCII
 
-          echo "All FTPS upload attempts failed."
-          exit 1
+          & $winscp /ini=nul /script=winscp-script.txt /log=winscp.log
+
+          if ($LASTEXITCODE -ne 0) {
+            Get-Content winscp.log -Tail 200
+            exit $LASTEXITCODE
+          }
